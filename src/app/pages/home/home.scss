@@ -1,0 +1,87 @@
+main {
+  background-color: #fff8e1; /* Light amber for apiculture theme */
+  font-family: 'Roboto', sans-serif;
+}
+
+.hero {
+  background-color: #f5f1e07e; /* Light amber for hero background */
+}
+
+.carousel img {
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.carousel-caption h2 {
+  color: #d97706; /* Amber for headings */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+.carousel-caption {
+
+    background: rgba(255, 248, 225, 0.8); /* Semi-transparent amber for readability */
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.carousel-caption p {
+  color: #15803d; /* Green for text */
+}
+
+.btn-outline-warning {
+  border-color: #d97706;
+  color: #d97706;
+}
+
+.btn-outline-warning:hover {
+  background-color: #d97706;
+  color: #fff8e1;
+}
+
+.btn-warning {
+  background-color: #d97706;
+  border-color: #d97706;
+}
+
+.btn-warning:hover {
+  background-color: #14532d; /* Darker green for hover */
+  border-color: #14532d;
+}
+
+.products h2, .about h2, .blog h2, .newsletter h2 {
+  color: #d97706; /* Amber for headings */
+}
+
+.card-title {
+  color: #15803d; /* Green for card titles */
+}
+
+.card-text {
+  color: #333; /* Darker text for readability */
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.text-success {
+  color: #15803d !important; /* Green for text */
+}
+
+.text-success:hover {
+  color: #14532d !important; /* Darker green on hover */
+}
+
+@media (max-width: 767px) {
+  .carousel-caption {
+    display: block !important; /* Ensure captions are visible on mobile */
+    background: rgba(255, 248, 225, 0.8); /* Semi-transparent amber for readability */
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .newsletter .input-group {
+    width: 100% !important; /* Full width on mobile */
+  }
+}

@@ -1,0 +1,33 @@
+.top {
+    background-color: beige;
+    height: 80vh;
+  }
+  
+  .middle {
+    background-color: bisque;
+    height: 50vh;
+    display: flex;
+  }
+  
+  .bottom {
+    background-color: lightgray;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .sublogo {
+    height: 100px;
+    width:  100px;
+    position: absolute;
+    right: -100px;
+}
+
+.gsaplogo {
+    height: 100px;
+    width: 100px;
+    opacity: 0;
+    position: absolute;
+    left: -100px;
+}
