@@ -1,14 +1,9 @@
-import { Component, effect, signal, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, effect, signal, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 import { gsap } from 'gsap';
-
-
-let ScrollTrigger: any;
-if (typeof window !== 'undefined') {
-  import('gsap/ScrollTrigger').then(module => {
-    ScrollTrigger = module.ScrollTrigger;
-    gsap.registerPlugin(ScrollTrigger);
-  });
-}
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-about',
@@ -16,43 +11,38 @@ if (typeof window !== 'undefined') {
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })
-export class About implements AfterViewInit {
-  @ViewChild('animateBox') animateBox!: ElementRef;
+export class About implements OnInit {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private meta: Meta,
+    private title: Title
+  ) {}
 
-  constructor() { }
+  ngOnInit(): void {
+    // Set SEO meta tags
+    this.title.setTitle('À Propos - Boutique Apicole');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Découvrez l’histoire, la mission et les valeurs de notre boutique apicole, dédiée à l’apiculture durable et à la qualité des produits.'
+    });
 
-  ngAfterViewInit() {
-    if (typeof window !== 'undefined') {
-      // Import ScrollTrigger dynamically
-      import('gsap/ScrollTrigger').then(module => {
-        const ScrollTrigger = module.ScrollTrigger;
-        gsap.registerPlugin(ScrollTrigger);
-
-        // GSAP animation code
-        gsap.to(".gsaplogo", {
-          x: "52vw",
-          y: "15vh",
-          scale: 2.5,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: ".gsaplogo",
-            start: "top 80%",
-            end: "top 40%",
-            scrub: 1,
-          }
-        });
-        gsap.to(".sublogo", {
-          x: "-52vw",
-          y: "15vh",
-          scale: 2.5,
-          rotate: 360,
-          scrollTrigger: {
-            trigger: ".sublogo",
-            start: "top 80%",
-            end: "top 40%",
-            scrub: 1,
-          }
-        });
+    // GSAP animations
+    if (isPlatformBrowser(this.platformId)) {
+      gsap.from('.about-section', {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        stagger: 0.3,
+        ease: 'power3.out',
+        delay: 0.2
+      });
+      gsap.from('.about-img', {
+        opacity: 0,
+        scale: 0.9,
+        duration: 1.2,
+        stagger: 0.3,
+        ease: 'power3.out',
+        delay: 0.4
       });
     }
   }

@@ -5,10 +5,11 @@ import { Home } from "./pages/home/home";
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-{ path: '', component: Home },
-  { path: 'boutique/ruches', component: Boutique },
-  { path: 'boutique/vetements', component: Boutique },
-  { path: 'boutique/miellerie', component: Boutique },
+  { path: '', component: Home },
+  { path: 'boutique', component: Boutique }, // For all products
+  { path: 'boutique/:category', component: Boutique }, // For specific categories
   { path: 'a-propos', component: About },
-  { path: 'contact', component: Contact }
+  { path: 'contact', component: Contact },
+  { path: 'panier', loadComponent: () => import('./pages/panier/panier').then(m => m.Panier) }, // Lazy load panier component
+  { path: '**', redirectTo: '', pathMatch: 'full' } // Handle invalid routes
 ];

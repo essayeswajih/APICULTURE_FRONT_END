@@ -1,6 +1,7 @@
 main {
   background-color: #fff8e1; /* Light amber for apiculture theme */
   font-family: 'Roboto', sans-serif;
+  /* Background image for main content */
 }
 
 .hero {
@@ -84,4 +85,40 @@ main {
   .newsletter .input-group {
     width: 100% !important; /* Full width on mobile */
   }
+}
+
+#beeBox {
+  position: absolute;
+  width: 95vw; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden; /* Hide anything that goes outside the box */
+  z-index: 0; /* Ensure the bee box is above other content */
+  top: 100px; /* Adjust the box position as necessary */
+  left: 0; /* Align the box to the left edge */
+}
+
+#bee {
+width: 125px;
+  box-sizing: border-box;
+  will-change: transform;
+  position: absolute;
+}
+
+#beeBox1 {
+  position: absolute;
+  width: 95vw; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden; /* Hide anything that goes outside the box */
+  z-index: 0; /* Ensure the bee box is above other content */
+  top: 100px; /* Adjust the box position as necessary */
+  right: 0; /* Align the box to the left edge */
+}
+
+#bee1 {
+width: 125px;
+  box-sizing: border-box;
+  will-change: transform;
+  position: absolute;
+  right: 0;
+  top: 30vh; /* Align the bee to the top right corner */
 }

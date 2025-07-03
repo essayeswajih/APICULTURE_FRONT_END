@@ -39,11 +39,13 @@ main {
   transform: translateY(-5px);
 }
 
-.card-img-top {
-  height: 280px; /* Consistent with À Propos */
-  object-fit: cover;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+.table {
+  background-color: #fff; /* White background for table */
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
 }
 
 .form-control {
@@ -78,6 +80,16 @@ main {
 .hover-dark-green:hover {
   background-color: #14532d; /* Darker green for hover */
   border-color: #14532d;
+}
+
+.btn-outline-success {
+  border-color: #15803d;
+  color: #15803d;
+}
+
+.btn-outline-success:hover {
+  background-color: #14532d;
+  color: #fff;
 }
 
 .bg-light-amber {
