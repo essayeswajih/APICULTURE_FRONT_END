@@ -5,7 +5,7 @@ main {
 }
 
 .hero {
-  background-color: #f5f1e07e; /* Light amber for hero background */
+  background-color: #fff7d87e; /* Light amber for hero background */
 }
 
 .carousel img {
@@ -121,4 +121,23 @@ width: 125px;
   position: absolute;
   right: 0;
   top: 30vh; /* Align the bee to the top right corner */
+}
+  .carousel-item {
+    padding: 0 15px;
+  }
+  @media (min-width: 768px) {
+    .carousel-item .row {
+      justify-content: center;
+    }
+    .carousel-item .col-md-4 {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+    }
+  }
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: #a19f9d4f; /* Amber for carousel controls */
+  border-radius: 50%;
+  margin: 10px;
+  padding: 10px !important; /* Ensure the icon is visible */
 }
