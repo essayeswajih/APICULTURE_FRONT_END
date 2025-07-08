@@ -1,13 +1,14 @@
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
 import { Api, Category } from '../../services/api';
 import { gsap } from 'gsap';
 import { FormsModule } from '@angular/forms';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'; // Import this
 
 @Component({
   selector: 'app-category-management',
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule, HttpClientModule], // Include HttpClientModule
   templateUrl: './category-management.html',
   styleUrls: ['./category-management.scss'],
 })

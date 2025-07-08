@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { gsap } from 'gsap';
 
 let ScrollTrigger: any;
@@ -18,6 +18,7 @@ if (typeof window !== 'undefined') {
   styleUrl: './home.scss'
 })
 export class Home implements AfterViewInit {
+  constructor(private activatedRoute: ActivatedRoute) {}
   ngAfterViewInit(): void {
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);

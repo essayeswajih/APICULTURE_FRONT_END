@@ -8,7 +8,11 @@
     "/boutique/Produits de la ruche": {},
     "/boutique/Ruches": {},
     "/boutique/Vêtements": {},
+    "/categories": {},
     "/contact": {},
-    "/panier": {}
+    "/dashboard": {},
+    "/orders": {},
+    "/panier": {},
+    "/products": {}
   }
 }

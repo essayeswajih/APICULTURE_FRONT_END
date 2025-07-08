@@ -28,7 +28,7 @@ export const routes: Routes = [
     path: 'panier',
     loadComponent: () => import('./pages/panier/panier').then(m => m.Panier)
   },
-  { path: 'dashboard', component: Dashboard},
+  { path: 'dashboard', loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard) },
   { path: 'categories', component: CategoryManagement },
   { path: 'products', component: ProductManagement },
   { path: 'orders', component: OrderManagement },
