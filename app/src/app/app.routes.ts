@@ -8,6 +8,7 @@ import { Routes } from '@angular/router';
 import { ProductManagement } from "./pages/product-management/product-management";
 import { OrderManagement } from "./pages/order-management/order-management";
 import { Dashboard } from "./pages/dashboard/dashboard";
+import { authGuard } from "./authGuard/auth-guard";
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -28,9 +29,10 @@ export const routes: Routes = [
     path: 'panier',
     loadComponent: () => import('./pages/panier/panier').then(m => m.Panier)
   },
-  { path: 'dashboard', loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard) },
-  { path: 'categories', component: CategoryManagement },
-  { path: 'products', component: ProductManagement },
-  { path: 'orders', component: OrderManagement },
+  { path: 'dashboard', loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard), canActivate: [authGuard] },
+  { path: 'categories', component: CategoryManagement, canActivate: [authGuard] },
+  { path: 'products', component: ProductManagement, canActivate: [authGuard] },
+  { path: 'orders', component: OrderManagement, canActivate: [authGuard] },
+  { path: 'login', loadComponent: () => import('./auth/login/login').then(m => m.Login) },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
