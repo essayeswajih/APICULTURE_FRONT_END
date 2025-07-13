@@ -10,10 +10,13 @@
             <button class="text-success dropdown-toggle bg-transparent border-0" (click)="toggleDropdown()" id="footerBoutiqueDropdown" aria-expanded="false">
               Boutique
             </button>
-            <ul class="dropdown-menu" [ngClass]="{'show': isDropdownOpen}" aria-labelledby="footerBoutiqueDropdown">
-              <li><a class="dropdown-item text-success" routerLink="/boutique/ruches" routerLinkActive="active-route">Ruches</a></li>
-              <li><a class="dropdown-item text-success" routerLink="/boutique/vetements" routerLinkActive="active-route">Vêtements</a></li>
-              <li><a class="dropdown-item text-success" routerLink="/boutique/miellerie" routerLinkActive="active-route">Miellerie</a></li>
+            <ul class="dropdown-menu" [ngClass]="{'show': isDropdownOpen}" aria-labelledby="footerBoutiqueDropdown" style="max-height: 140px; overflow-y: auto;">
+              <!-- Dynamically generate categories for the footer -->
+              <li *ngFor="let category of categories">
+                <a class="dropdown-item text-success" [routerLink]="'/boutique/' + category.name" routerLinkActive="active-route">
+                  {{ category.name }}
+                </a>
+              </li>
             </ul>
           </li>
           <li><a class="text-success" routerLink="/a-propos" routerLinkActive="active-route">À Propos</a></li>

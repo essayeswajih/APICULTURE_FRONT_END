@@ -9,7 +9,7 @@ main {
   align-items: center;
   position: relative;
   background-color: #f5f1e07e; /* Light amber fallback */
-  padding-top: 8rem; /* Increased for more space */
+  padding-top: 8rem;
   padding-bottom: 8rem;
 }
 
@@ -28,24 +28,6 @@ main {
   position: relative;
   z-index: 2;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for text contrast */
-}
-
-.card {
-  border: none;
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.table {
-  background-color: #fff; /* White background for table */
-}
-
-.table th,
-.table td {
-  vertical-align: middle;
 }
 
 .form-control,
@@ -114,20 +96,4 @@ main {
 .py-6 {
   padding-top: 4.5rem; /* Increased for more free space */
   padding-bottom: 4.5rem;
-}
-
-.modal-content {
-  background-color: #fff8e1; /* Light amber background */
-}
-
-.modal-header {
-  border-bottom: 1px solid #d97706; /* Amber border */
-}
-
-.modal-title {
-  font-weight: 500;
-}
-
-.btn-close {
-  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%); /* Amber tint */
 }

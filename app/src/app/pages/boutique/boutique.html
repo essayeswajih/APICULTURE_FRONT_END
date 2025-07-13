@@ -14,14 +14,14 @@
       <div class="d-flex flex-wrap gap-2 mb-3 mb-md-0">
         @for (category of categories; track category) {
           <button
-            class="btn"
+            class="btn btncategory"
             [ngClass]="{
               'btn-warning text-light': selectedCategory === category,
               'btn-outline-warning': selectedCategory !== category
             }"
-            (click)="selectCategory(category)"
+            (click)="selectCategory(category.name)"
           >
-            {{ category }}
+            {{ category?.name }}
           </button>
         }
       </div>
@@ -41,12 +41,11 @@
       @for (product of sortedProducts; track product.id) {
         <div class="col">
           <div class="card h-100 product-card">
-            <img [src]="product.image" class="card-img-top" alt="{{ product.name }}">
+            <img [src]="product.image_url" class="card-img-top" alt="{{ product.name }}" (click)="goToProduct(product.id)" style="width: 100%;height: auto;padding: 20px;cursor: pointer;">
             <div class="card-body">
-              <h5 class="card-title text-success">{{ product.name }}</h5>
-              <p class="card-text text-dark">{{ product.description }}</p>
-              <p class="card-text fw-bold text-amber">{{ product.price }} €</p>
-              <button class="btn btn-warning w-100 text-light hover-dark-green">Ajouter au panier</button>
+              <h5 class="card-title text-success" (click)="goToProduct(product.id)" >{{ product.name }}</h5>
+              <p class="card-text fw-bold text-amber" (click)="goToProduct(product.id)">{{ product.price }} DT</p>
+              <button class="btn btn-warning w-100 text-light hover-dark-green" (click)="addToCart(product)">Ajouter au panier</button>
             </div>
           </div>
         </div>

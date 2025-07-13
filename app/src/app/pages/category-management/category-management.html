@@ -24,7 +24,11 @@
             name="categoryDescription"
           ></textarea>
         </div>
-        <button type="submit" class="btn btn-warning">Add Category</button>
+        @if(editMode) {
+          <button type="submit" class="btn btn-warning">Update Category</button>
+        }@else {
+          <button type="submit" class="btn btn-success">Add Category</button>
+        }
       </form>
     </div>
   </div>

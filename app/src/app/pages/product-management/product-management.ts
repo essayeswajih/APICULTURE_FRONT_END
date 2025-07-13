@@ -1,5 +1,4 @@
-// src/app/product-management/product-management.component.ts
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
 import { Api, Product, Category } from '../../services/api';
 import { gsap } from 'gsap';
 import { FormsModule } from '@angular/forms';
@@ -7,39 +6,58 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-product-management',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './product-management.html',
-  styleUrl: './product-management.scss'
+  styleUrls: ['./product-management.scss']
 })
 export class ProductManagement implements OnInit {
   products: Product[] = [];
   categories: Category[] = [];
-  newProduct: Product = { id: 0, name: '', description: '', price: 0, stock_quantity: 0, category_id: 0 };
+  newProduct: Product = {
+    id: 0,
+    name: '',
+    description: '',
+    price: 0,
+    stock_quantity: 0,
+    category_id: 0,
+    discounted_price: 0,  // New field for discounted price
+    image_url: '',           // New field for image URL
+    promo: false,            // New field for promotional status
+    buzzent: '',             // New field for buzz or marketing text
+  };
   editMode = false;
   editProductId: number | null = null;
 
   constructor(
     private apiService: Api,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private cdRef: ChangeDetectorRef  // Inject ChangeDetectorRef
   ) {}
 
-  ngOnInit() {
-    this.loadProducts();
+  async ngOnInit() {
+    await this.loadProducts();
     this.apiService.getCategories().subscribe(categories => {
       this.categories = categories;
+      this.cdRef.detectChanges();  // Trigger change detection after category load
     });
   }
 
   addProduct() {
     if (this.editMode && this.editProductId) {
-      this.apiService.updateProduct(this.editProductId, this.newProduct).subscribe(() => {
-        this.resetForm();
-        this.loadProducts();
+      this.apiService.updateProduct(this.editProductId, this.newProduct).subscribe({
+        next: () => {
+          this.resetForm();
+          this.loadProducts();
+        },
+        error: (err) => console.error('Update failed:', err)
       });
     } else {
-      this.apiService.addProduct(this.newProduct).subscribe(() => {
-        this.resetForm();
-        this.loadProducts();
+      this.apiService.addProduct(this.newProduct).subscribe({
+        next: () => {
+          this.resetForm();
+          this.loadProducts();
+        },
+        error: (err) => console.error('Add failed:', err)
       });
     }
   }
@@ -51,11 +69,24 @@ export class ProductManagement implements OnInit {
   }
 
   deleteProduct(id: number) {
-    this.apiService.deleteProduct(id).subscribe(() => this.loadProducts());
+    this.apiService.deleteProduct(id).subscribe(() => {
+      this.loadProducts();
+    });
   }
 
   resetForm() {
-    this.newProduct = { id: 0, name: '', description: '', price: 0, stock_quantity: 0, category_id: 0 };
+    this.newProduct = {
+      id: 0,
+      name: '',
+      description: '',
+      price: 0,
+      stock_quantity: 0,
+      category_id: 0,
+      discounted_price: 0,
+      image_url: '',
+      promo: false,
+      buzzent: '',
+    };
     this.editMode = false;
     this.editProductId = null;
   }
@@ -67,6 +98,8 @@ export class ProductManagement implements OnInit {
   private loadProducts() {
     this.apiService.getProducts().subscribe(products => {
       this.products = products;
+      this.cdRef.detectChanges();  // Trigger change detection after loading products
+
       if (isPlatformBrowser(this.platformId)) {
         setTimeout(() => {
           const cards = document.querySelectorAll('.card');

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
 import { Api, Order, OrderStatus } from '../../services/api';
 import { FormsModule } from '@angular/forms';
 import { gsap } from 'gsap';
@@ -6,9 +6,9 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-order-management',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './order-management.html',
-  styleUrl: './order-management.scss'
+  styleUrls: ['./order-management.scss']
 })
 export class OrderManagement implements OnInit {
   orders: Order[] = [];
@@ -16,7 +16,8 @@ export class OrderManagement implements OnInit {
 
   constructor(
     private apiService: Api,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private cdRef: ChangeDetectorRef  // Inject ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -30,12 +31,18 @@ export class OrderManagement implements OnInit {
   }
 
   deleteOrder(id: number) {
-    this.apiService.deleteOrder(id).subscribe(() => this.loadOrders());
+    this.apiService.deleteOrder(id).subscribe(() => {
+      this.loadOrders();
+    });
   }
 
   private loadOrders() {
     this.apiService.getOrders().subscribe(orders => {
       this.orders = orders;
+
+      // Trigger change detection after loading orders
+      this.cdRef.detectChanges();
+
       if (isPlatformBrowser(this.platformId)) {
         setTimeout(() => {
           const cards = document.querySelectorAll('.card');

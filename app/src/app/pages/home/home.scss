@@ -141,3 +141,10 @@ width: 125px;
   margin: 10px;
   padding: 10px !important; /* Ensure the icon is visible */
 }
+.carousel-control-next1,
+.carousel-control-prev1 {
+  width: 10vw; /* Adjust width for better visibility */
+  height: 100px; /* Adjust height for better visibility */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically */
+}
