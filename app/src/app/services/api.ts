@@ -34,11 +34,15 @@ export enum OrderStatus {
 
 export interface Order {
   id: number;
-  user_id: number;
   total_amount: number;
   status: OrderStatus;
   created_at: string;
   items: { product_id: number; quantity: number; price: number }[];
+  username: string;
+  email: string;
+  telephone: string;
+  location: string;
+  payment_method: string;
 }
 
 @Injectable({

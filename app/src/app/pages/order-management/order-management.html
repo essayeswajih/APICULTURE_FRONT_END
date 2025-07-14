@@ -6,7 +6,6 @@
         <div class="card mb-3">
           <div class="card-body">
             <h5 class="card-title">Order #{{ order.id }}</h5>
-            <p class="card-text">User ID: {{ order.user_id }}</p>
             <p class="card-text">Total: ${{ order.total_amount | number:'1.2-2' }}</p>
             <p class="card-text">Status: {{ order.status | titlecase }}</p>
             <p class="card-text">Created: {{ order.created_at | date:'short' }}</p>

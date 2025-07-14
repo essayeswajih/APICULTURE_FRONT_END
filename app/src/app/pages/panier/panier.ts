@@ -175,7 +175,11 @@ export class Panier implements OnInit {
         price: item.price
       })),
       id: 0,
-      user_id: 0,
+      username: this.checkoutForm.value.fullName,
+      email: this.checkoutForm.value.email,
+      telephone: this.checkoutForm.value.phone.toString(),
+      location: this.checkoutForm.value.deliveryLocation,
+      payment_method: this.paymentMethod,
       created_at: new Date().toISOString()
     };
 
@@ -183,6 +187,9 @@ export class Panier implements OnInit {
       next: (order) => {
         console.log('Order created successfully:', order);
         this.router.navigate(['/order-confirmation', order.id]);
+        // Clear cart after order finalization
+        this.cartItems = [];
+        this.saveCartToLocalStorage();
       },
       error: (err) => {
         console.error('Failed to create order:', err);
@@ -190,9 +197,7 @@ export class Panier implements OnInit {
       }
     });
     this.closeModal();
-    // Clear cart after order finalization
-    this.cartItems = [];
-    this.saveCartToLocalStorage();
+
   }
 }
 }
